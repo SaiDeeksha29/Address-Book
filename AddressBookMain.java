@@ -19,7 +19,7 @@ public class AddressBookMain {
 		Scanner sc = new Scanner(System.in);
 		AddressBook ab = new AddressBook();
 		while (true) {
-			System.out.println("Menu : \n1.Add Contact\n2.Update Contact\n3.Exit");
+			System.out.println("Menu : \n1.Add Contact\n2.Update Contact\n3.Delete Contact\n4.Exit");
 			System.out.println("Enter your choice : ");
 			int ch = sc.nextInt();
 			if (ch == 1) {
@@ -101,6 +101,16 @@ public class AddressBookMain {
 					}
 				}
 			} else if (ch == 3) {
+				System.out.println("Enter the Contact First Name to delete : ");
+				String em = sc.nextLine();
+				sc.nextLine();
+				if (ab.removeContact(em))
+					System.out.println("The contact is successfully deleted.");
+				else {
+
+					System.out.println("No contact on the list");
+				}
+			} else if (ch == 4) {
 				break;
 			}
 		}

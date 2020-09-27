@@ -32,4 +32,19 @@ public class AddressBook {
 		return obj;
 	}
 
+	public boolean removeContact(String first) {
+		int val = 0;
+		for (Contact obj : getAddress()) {
+			if (obj.getFirstName().equals(first)) {
+				address.remove(obj);
+			}
+			val = 1;
+			break;
+		}
+		if (val == 1)
+			return true;
+		else {
+			return false;
+		}
+	}
 }
