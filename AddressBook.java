@@ -1,6 +1,6 @@
 package com.capgemini.training.model;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * @author saideeksha

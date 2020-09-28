@@ -16,39 +16,36 @@ public class AddressBookMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Welcome to Address Book program in AddressBookMain class on Master branch");
-		Scanner sc = new Scanner(System.in);
-		AddressBook ab = new AddressBook();
-		while (true) {
-			System.out.println("Menu : \n1.Add Contact\n2.Update Contact\n3.Delete Contact\n4.Exit");
-			System.out.println("Enter your choice : ");
-			int ch = sc.nextInt();
-			if (ch == 1) {
-				System.out.println("Add Contact in Address Book : ");
-				System.out.println("First Name : ");
-				String fn = sc.nextLine();
-				sc.nextLine();
-				System.out.println("Last Name : ");
-				String ln = sc.nextLine();
-				System.out.println("Address : ");
-				String add = sc.nextLine();
-				System.out.println("City : ");
-				String city = sc.nextLine();
-				System.out.println("State : ");
-				String state = sc.nextLine();
-				System.out.println("Zip : ");
-				int zip = sc.nextInt();
-				System.out.println("Phone Number : ");
-				long ph = sc.nextLong();
-				System.out.println("Email : ");
-				String email = sc.nextLine();
-				sc.nextLine();
-				Contact obj1 = new Contact(fn, ln, add, city, state, zip, ph, email);
-				ab.addContact(obj1);
-			} else if (ch == 2) {
-				ArrayList<Contact> all = new ArrayList<Contact>();
-				if (all.isEmpty())
-					System.out.println("The list is empty");
-				else {
+		try (Scanner sc = new Scanner(System.in)) {
+			AddressBook ab = new AddressBook();
+			while (true) {
+				System.out.println("Menu : \n1.Add Contact\n2.Update Contact\n3.Delete Contact\n4.Exit");
+				System.out.println("Enter your choice : ");
+				int ch = sc.nextInt();
+				if (ch == 1) {
+					System.out.println("Add Contact in Address Book : ");
+					System.out.println("First Name : ");
+					String fn = sc.nextLine();
+					sc.nextLine();
+					System.out.println("Last Name : ");
+					String ln = sc.nextLine();
+					System.out.println("Address : ");
+					String add = sc.nextLine();
+					System.out.println("City : ");
+					String city = sc.nextLine();
+					System.out.println("State : ");
+					String state = sc.nextLine();
+					System.out.println("Zip : ");
+					int zip = sc.nextInt();
+					System.out.println("Phone Number : ");
+					long ph = sc.nextLong();
+					System.out.println("Email : ");
+					String email = sc.nextLine();
+					sc.nextLine();
+					Contact obj1 = new Contact(fn, ln, add, city, state, zip, ph, email);
+					ab.addContact(obj1);
+				} else if (ch == 2) {
+					ArrayList<Contact> all = new ArrayList<Contact>();
 					System.out.println("Enter the First Name to update : ");
 					String ema = sc.nextLine();
 					sc.nextLine();
@@ -99,19 +96,19 @@ public class AddressBookMain {
 							break;
 						}
 					}
+				} else if (ch == 3) {
+					System.out.println("Enter the Contact First Name to remove : ");
+					String em = sc.nextLine();
+					sc.nextLine();
+					System.out.println("Do you want to remove the contact (Y/N): ");
+					String cho = sc.nextLine();
+					if (cho.equals("Y")) {
+						if (ab.removeContact(em))
+							System.out.println("The contact is successfully deleted.");
+					}
+				} else if (ch == 4) {
+					break;
 				}
-			} else if (ch == 3) {
-				System.out.println("Enter the Contact First Name to delete : ");
-				String em = sc.nextLine();
-				sc.nextLine();
-				if (ab.removeContact(em))
-					System.out.println("The contact is successfully deleted.");
-				else {
-
-					System.out.println("No contact on the list");
-				}
-			} else if (ch == 4) {
-				break;
 			}
 		}
 	}
