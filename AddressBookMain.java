@@ -22,7 +22,7 @@ public class AddressBookMain {
 			AddressBookDictionary abd = new AddressBookDictionary();
 			while (true) {
 				System.out.println(
-						"Menu :\n1.Add Address Book\n2.Search Persons in a City\n3.Search Persons in a State\n4.Exit");
+						"Menu :\n1.Add Address Book\n2.Search Persons in a City\n3.Search Persons in a State\n4.View persons by City\n5.View persons by State\n6.Exit");
 				System.out.println("Enter your choice : ");
 				int ch1 = sc.nextInt();
 				if (ch1 == 1) {
@@ -132,6 +132,24 @@ public class AddressBookMain {
 								System.out.println("No contact on the list");
 							}
 						} else if (ch == 4) {
+							System.out.println("Enter the city name : ");
+							String city = sc.nextLine();
+							List<Contact> personsByCity = new ArrayList<Contact>();
+							personsByCity = (ab.getAddress()).stream().filter(Contact -> Contact.getCity().equals(city))
+									.collect(Collectors.toList());
+							for (Contact person : personsByCity) {
+								System.out.println(person.getFirstName() + " " + person.getLastName());
+							}
+						} else if (ch == 5) {
+							System.out.println("Enter the state name : ");
+							String state = sc.nextLine();
+							List<Contact> personsByState = new ArrayList<Contact>();
+							personsByState = (ab.getAddress()).stream()
+									.filter(Contact -> Contact.getState().equals(state)).collect(Collectors.toList());
+							for (Contact person : personsByState) {
+								System.out.println(person.getFirstName() + " " + person.getLastName());
+							}
+						} else if (ch == 6) {
 							break;
 						}
 					}
