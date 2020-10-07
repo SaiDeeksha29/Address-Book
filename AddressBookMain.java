@@ -22,7 +22,7 @@ public class AddressBookMain {
 			AddressBookDictionary abd = new AddressBookDictionary();
 			while (true) {
 				System.out.println(
-						"Menu :\n1.Add Address Book\n2.Search Persons and their count in a City\n3.Search Persons and their count in a State\n4.View persons by City\n5.View persons by State\n6.List sort by name\n7.Exit");
+						"Menu :\n1.Add Address Book\n2.Search Persons and their count in a City\n3.Search Persons and their count in a State\n4.View persons by City\n5.View persons by State\n6.List sort by name\n7.List sort by city\n8.List sort by state\n9.List sort by zip\n10.Exit");
 				System.out.println("Enter your choice : ");
 				int ch1 = sc.nextInt();
 				if (ch1 == 1) {
@@ -156,6 +156,24 @@ public class AddressBookMain {
 							for (String name : sortedByName)
 								System.out.println(name);
 						} else if (ch == 7) {
+							List<String> sortedByCity = new ArrayList<String>();
+							sortedByCity = (ab.getAddress()).stream().map(Contact -> Contact.getCity()).sorted()
+									.collect(Collectors.toList());
+							for (String city : sortedByCity)
+								System.out.println(city);
+						} else if (ch == 8) {
+							List<String> sortedByState = new ArrayList<String>();
+							sortedByState = (ab.getAddress()).stream().map(Contact -> Contact.getState()).sorted()
+									.collect(Collectors.toList());
+							for (String state : sortedByState)
+								System.out.println(state);
+						} else if (ch == 9) {
+							List<Integer> sortedByZip = new ArrayList<Integer>();
+							sortedByZip = (ab.getAddress()).stream().map(Contact -> Contact.getZip()).sorted()
+									.collect(Collectors.toList());
+							for (Integer zip : sortedByZip)
+								System.out.println(zip);
+						} else if (ch == 10) {
 							break;
 						}
 					}
@@ -188,7 +206,6 @@ public class AddressBookMain {
 					for (Contact c : contactList) {
 						System.out.println(c + " " + countByState);
 					}
-
 				} else if (ch1 == 4) {
 					break;
 				}
