@@ -22,7 +22,7 @@ public class AddressBookMain {
 			AddressBookDictionary abd = new AddressBookDictionary();
 			while (true) {
 				System.out.println(
-						"Menu :\n1.Add Address Book\n2.Search Persons and their count in a City\n3.Search Persons and their count in a State\n4.View persons by City\n5.View persons by State\n6.Exit");
+						"Menu :\n1.Add Address Book\n2.Search Persons and their count in a City\n3.Search Persons and their count in a State\n4.View persons by City\n5.View persons by State\n6.List sort by name\n7.Exit");
 				System.out.println("Enter your choice : ");
 				int ch1 = sc.nextInt();
 				if (ch1 == 1) {
@@ -150,6 +150,12 @@ public class AddressBookMain {
 								System.out.println(person.getFirstName() + " " + person.getLastName());
 							}
 						} else if (ch == 6) {
+							List<String> sortedByName = new ArrayList<String>();
+							sortedByName = (ab.getAddress()).stream().map(Contact -> Contact.toString()).sorted()
+									.collect(Collectors.toList());
+							for (String name : sortedByName)
+								System.out.println(name);
+						} else if (ch == 7) {
 							break;
 						}
 					}
