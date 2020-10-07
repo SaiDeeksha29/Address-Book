@@ -47,22 +47,4 @@ public class AddressBook {
 			return false;
 		}
 	}
-
-	public boolean duplicateCheck(String firstName, String lastName) {
-		List<Contact> name = new ArrayList<Contact>();
-		int val = 0;
-		for (int i = 0; i < address.size();) {
-			if (address.get(i).getFirstName().equalsIgnoreCase(firstName)
-					&& address.get(i).getLastName().equalsIgnoreCase(lastName)) {
-				name.add(address.get(i));
-			}
-			val = 1;
-			break;
-		}
-		if (val == 1)
-			return true;
-		else {
-			return false;
-		}
-	}
 }

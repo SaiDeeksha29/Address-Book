@@ -20,7 +20,7 @@ public class AddressBookMain {
 		try (Scanner sc = new Scanner(System.in)) {
 			AddressBookDictionary abd = new AddressBookDictionary();
 			while (true) {
-				System.out.println("Menu : 1.Add Address Book\n2.Exit");
+				System.out.println("Menu :\n1.Add Address Book\n2.Exit");
 				System.out.println("Enter your choice : ");
 				int ch1 = sc.nextInt();
 				if (ch1 == 1) {
@@ -32,15 +32,14 @@ public class AddressBookMain {
 
 					abd.addAddressBook(abn, ab);
 					while (true) {
-						System.out.println(
-								"Menu : \n1.Add Contact\n2.Update Contact\n3.Delete Contact\n4.Exit");
+						System.out.println("Menu :\n1.Add Contact\n2.Update Contact\n3.Delete Contact\n4.Exit");
 						System.out.println("Enter your choice : ");
 						int ch = sc.nextInt();
 						if (ch == 1) {
 							System.out.println("Add Contact in Address Book : ");
+							sc.nextLine();
 							System.out.println("First Name : ");
 							String fn = sc.nextLine();
-							sc.nextLine();
 							System.out.println("Last Name : ");
 							String ln = sc.nextLine();
 							System.out.println("Address : ");
@@ -56,32 +55,15 @@ public class AddressBookMain {
 							System.out.println("Email : ");
 							String email = sc.nextLine();
 							sc.nextLine();
-							Contact obj1 = new Contact(fn, ln, add, city, state, zip, ph, email);
-							if (ab.duplicateCheck(fn, ln) == true) {
-								System.out.println("The name exists already");
-								System.out.println("First Name : ");
-								fn = sc.nextLine();
-								System.out.println("Last Name : ");
-								ln = sc.nextLine();
-								System.out.println("Address : ");
-								add = sc.nextLine();
-								System.out.println("City : ");
-								city = sc.nextLine();
-								System.out.println("State : ");
-								state = sc.nextLine();
-								System.out.println("Zip : ");
-								zip = sc.nextInt();
-								System.out.println("Phone Number : ");
-								ph = sc.nextLong();
-								System.out.println("Email : ");
-								email = sc.nextLine();
-								sc.nextLine();
-								Contact obj2 = new Contact(fn, ln, add, city, state, zip, ph, email);
-								ab.addContact(obj2);
-								System.out.println("Contact added successfully");
-							} else {
-								ab.addContact(obj1);
-								System.out.println("Contact added successfully");
+							boolean duplicateCheck = (ab.getAddress()).stream().noneMatch(
+									Contact -> Contact.getFirstName().equals(fn) && Contact.getLastName().equals(ln));
+
+							if (duplicateCheck) {
+								// Instantiation of Contact Class
+								Contact contact = new Contact(fn, ln, add, city, state, zip, ph, email);
+
+								// Add New Contact into Address Book
+								ab.addContact(contact);
 							}
 						} else if (ch == 2) {
 							System.out.println("Enter the First Name to update : ");
@@ -145,7 +127,6 @@ public class AddressBookMain {
 							if (ab.removeContact(em))
 								System.out.println("The contact is successfully deleted.");
 							else {
-
 								System.out.println("No contact on the list");
 							}
 						} else if (ch == 4) {
