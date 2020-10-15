@@ -64,9 +64,10 @@ public class AddressBookMain {
 							if (duplicateCheck) {
 								// Instantiation of Contact Class
 								Contact contact = new Contact(fn, ln, add, city, state, zip, ph, email);
+								System.out.println(contact);
 
 								// Add New Contact into Address Book
-								ab.addContact(contact);
+								ab.addContact(new Contact(fn, ln, add, city, state, zip, ph, email));
 							}
 						} else if (ch == 2) {
 							System.out.println("Enter the First Name to update : ");
@@ -125,9 +126,11 @@ public class AddressBookMain {
 							}
 						} else if (ch == 3) {
 							System.out.println("Enter the Contact First Name to delete : ");
-							String em = sc.nextLine();
+							String fn = sc.nextLine();
 							sc.nextLine();
-							if (ab.removeContact(em))
+							System.out.println("Enter the Contact Last Name to delete : ");
+							String ln = sc.nextLine();
+							if (ab.removeContact(fn, ln))
 								System.out.println("The contact is successfully deleted.");
 							else {
 								System.out.println("No contact on the list");
