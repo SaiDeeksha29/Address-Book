@@ -99,4 +99,8 @@ public class Contact {
 		this.email = email;
 	}
 
+	public String toString() {
+		return firstName + " " + lastName + " " + address + " " + city + " " + state + " " + zip + " " + phone + " "
+				+ email;
+	}
 }
